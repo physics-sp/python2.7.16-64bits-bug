@@ -1,11 +1,6 @@
 
-La funcion PyEval_EvalFrameEx no existe:
 
-[0x000b89e4]> afl~sym.PyEval_Eval
-0x000b878b  277 259147 -> 5599 sym.PyEval_EvalFrame
-0x000ee280    1 27           sym.PyEval_EvalCode
-0x000ee2a0  386 112760 -> 7428 sym.PyEval_EvalCodeEx
-
+Python > ceval.c -> PyEval_EvalFrameEx
 
 
 opcode.opname[0x64] == 'LOAD_CONST':
@@ -30,3 +25,15 @@ LOAD_CONST:
         001f59a2 4c 2b 5c        SUB        R11,qword ptr [RSP + 0x18]
                  24 18
         001f59a7 89 c1           MOV        ECX,EAX
+
+
+
+
+
+        https://docs.python.org/2.7/library/dis.html
+
+EXTENDED_ARG(ext)
+
+    Prefixes any opcode which has an argument too big to fit into the default two bytes. ext holds two additional bytes which, taken together with the subsequent opcode’s argument, comprise a four-byte argument, ext being the two most-significant bytes.
+
+
