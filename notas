@@ -1,0 +1,32 @@
+
+La funcion PyEval_EvalFrameEx no existe:
+
+[0x000b89e4]> afl~sym.PyEval_Eval
+0x000b878b  277 259147 -> 5599 sym.PyEval_EvalFrame
+0x000ee280    1 27           sym.PyEval_EvalCode
+0x000ee2a0  386 112760 -> 7428 sym.PyEval_EvalCodeEx
+
+
+
+opcode.opname[0x64] == 'LOAD_CONST':
+
+
+
+linea 3217 en decomp de ghidra
+la func arranca en 001f08d0
+
+LOAD_CONST:
+001f5988 en codigo (Creo)
+
+        001f5988 4d 8b 64        MOV        R12,qword ptr [R14 + RDX*0x8 + 0x18]
+                 d6 18
+        001f598d 4d 8d 73 08     LEA        R14,[R11 + 0x8]
+        001f5991 49 83 04        ADD        qword ptr [R12],0x1
+                 24 01
+        001f5996 4d 89 23        MOV        qword ptr [R11],R12
+        001f5999 8b 05 19        MOV        EAX,dword ptr [DAT_004a25b8]                     = ??
+                 cc 2a 00
+        001f599f 4d 89 cb        MOV        R11,R9
+        001f59a2 4c 2b 5c        SUB        R11,qword ptr [RSP + 0x18]
+                 24 18
+        001f59a7 89 c1           MOV        ECX,EAX
