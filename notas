@@ -7,7 +7,7 @@ opcode.opname[0x64] == 'LOAD_CONST':
 
 
 
-linea 3217 en decomp de ghidra
+linea 3219 en decomp de ghidra
 la func arranca en 001f08d0
 
 LOAD_CONST:
@@ -44,5 +44,40 @@ Ajustar:
 2) tamaño de padding en fake_object
 3) orden en la resta en el calculo de offset
 4) cantidad de EXTENDED_ARG en bytecode
+
+
+Python > abstract.c -> PyObject_Call
+
+
+
+            
+  
+  pcVar1 = *(code **)(*(long *)(lParm1 + 8) + 0x80);
+  if (pcVar1 == (code *)0x0) {
+    PyErr_Format(PyExc_TypeError,"\'%.200s\' object is not callable",
+                 *(undefined8 *)(*(long *)(lParm1 + 8) + 0x18));
+    lVar3 = 0;
+  }
+  else {
+    iVar4 = *(int *)(_PyThreadState_Current + 0x18) + 1;
+    *(int *)(_PyThreadState_Current + 0x18) = iVar4;
+    if (_Py_CheckRecursionLimit < iVar4) {
+      iVar4 = _Py_CheckRecursiveCall(" while calling a Python object");
+      if (iVar4 != 0) {
+        return 0;
+      }
+      lVar3 = (*pcVar1)(lParm1,uParm2);
+
+
+
+        001d26b8 48 8b 47 08     MOV        RAX,qword ptr [RDI + 0x8]
+        001d26bc 48 8b 98        MOV        RBX,qword ptr [0x80 + RAX]
+                 80 00 00 00
+        .....
+        001d26f1 ff d3           CALL       RBX
+
+1) tamaño de padding de first_indirection es 0x80
+2) tamaño de padding de fake_object es 0x8
+
 
 
