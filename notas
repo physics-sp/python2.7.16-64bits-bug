@@ -37,3 +37,12 @@ EXTENDED_ARG(ext)
     Prefixes any opcode which has an argument too big to fit into the default two bytes. ext holds two additional bytes which, taken together with the subsequent opcode’s argument, comprise a four-byte argument, ext being the two most-significant bytes.
 
 
+
+
+Ajustar:
+1) tamaño de padding en first_indirection
+2) tamaño de padding en fake_object
+3) orden en la resta en el calculo de offset
+4) cantidad de EXTENDED_ARG en bytecode
+
+
