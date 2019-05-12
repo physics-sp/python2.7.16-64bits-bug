@@ -7,15 +7,15 @@ import types
 def a():
   pass
 
-  const_tuple = ()
-  addr_const_tuple = id(const_tuple)
-  print 'addr_const_tuple: ' + hex(addr_const_tuple)
+const_tuple = ()
+addr_const_tuple = id(const_tuple)
+print 'addr_const_tuple: ' + hex(addr_const_tuple)
 
 a.func_code = types.CodeType(
   0, 0, 0, 0,
   #chr(opcode.opmap['EXTENDED_ARG']) + '\xaa\xbb' +
-  chr(opcode.opmap['EXTENDED_ARG']) + '\xef\xbe' +
-  chr(opcode.opmap['LOAD_CONST'])   + '\xad\xde',
+  chr(opcode.opmap['EXTENDED_ARG']) + '\xad\xde' +
+  chr(opcode.opmap['LOAD_CONST'])   + '\xef\xbe',
   const_tuple, (), (), '', '', 0, ''
 )
 a()
