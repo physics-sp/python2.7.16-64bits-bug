@@ -81,6 +81,9 @@ Python > abstract.c -> PyObject_Call
 
 
 
-
-
 http://unpyc.sourceforge.net/Opcodes.html -> EXTENDED_ARG
+
+
+  https://stackoverflow.com/questions/25083861/what-do-the-zeros-in-python-function-bytecode-mean
+With 2 bytes you can give any bytecode an argument value between 0 and 65535, for bytecodes than need more, you can prefix the bytecode with the EXTENDED_ARG bytecode, adding 2 more bytes for a value between 0 and 4294967295. In theory you could use EXTENDED_ARG multiple times, but the CPython interpreter uses int for the oparg variable and is thus for practical purposes limited to 4-byte values.
+
